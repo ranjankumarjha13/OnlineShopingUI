@@ -1,0 +1,25 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>{{titile}}</h2>
+    <div class="error-message" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" [(ngModel)]="username" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <button *ngIf="isLogin" type="submit" (click)="validateUser()">Login</button>
+      <button *ngIf="!isLogin" type="submit" (click)="registerUser()">Register User</button>
+    </form>
+
+    <p class="signup-link">Don't have an account? <a (click)="onClickCreateAccount()">Sign Up</a></p>
+  </div>
+</div>

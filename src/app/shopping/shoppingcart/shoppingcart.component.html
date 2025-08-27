@@ -1,0 +1,91 @@
+<div class="mainDiv">
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Mithila Spices & Pickles</h1>
+        <div class="header-buttons">
+            <button (click)="toggleCart()">🛒 Cart ({{ getTotalItems() }})</button>
+            <button class="logout-btn" (click)="logout()">Logout</button>
+        </div>
+    </header>
+
+
+    <!-- Products -->
+    <main>
+        <h2>Our Products</h2>
+        <div class="products">
+
+            <!-- Spice Mix -->
+            <div class="card">
+                <img src="assets/redchillimg.webp" alt="Spice Mix">
+                <div class="card-content">
+                    <h3>Red Chilli Pickles</h3>
+                    <p>Rich blend of natural spices.</p>
+                    <p class="price">₹250</p>
+                    <button (click)="addToCart('Spice Mix', 250, 'assets/redchillimg.webp')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mango Pickle -->
+            <div class="card">
+                <img src="assets/mangoimg.webp" alt="Mango Pickle">
+                <div class="card-content">
+                    <h3>Mango Pickle</h3>
+                    <p>Traditional tangy taste.</p>
+                    <p class="price">₹180</p>
+                    <button (click)="addToCart('Mango Pickle', 180, 'assets/mangoimg.webp')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chili Powder -->
+            <div class="card">
+                <img src="assets/allspices.webp" alt="Chili Powder">
+                <div class="card-content">
+                    <h3>Home MadeSpices</h3>
+                    <p>Spicy & authentic flavor.</p>
+                    <p class="price">₹120</p>
+                    <button (click)="addToCart('Red Chili Powder', 120, 'assets/allspices.webp')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" *ngIf="showCart">
+        <div class="cart-content">
+            <button class="close-btn" (click)="toggleCart()">X</button>
+           <div style="border-bottom: 45px red;">
+             <h3 style="margin-left: 163px;">Mithial Shoping Cart</h3>
+           </div>
+
+            <div *ngFor="let item of cart; let i = index" class="cart-item">
+                <img [src]="item.img" [alt]="item.name">
+                <div class="cart-info">
+                    <strong>{{ item.name }}</strong><br>
+                    ₹{{ item.price }}
+                </div>
+                <div class="qty">
+                    <button style="margin-left: 2px;" (click)="changeQty(i, -1)">-</button>
+                    <span>{{ item.qty }}</span>
+                    <button (click)="changeQty(i, 1)">+</button>
+                </div>
+                <span>₹{{ item.price * item.qty }}</span>
+            </div>
+
+            <h4>Total: ₹{{ getTotalPrice() }}</h4>
+            <button class="checkout-btn" (click)="checkoutItem()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Mithila Spices & Pickles Store</p>
+    </footer>
+</div>

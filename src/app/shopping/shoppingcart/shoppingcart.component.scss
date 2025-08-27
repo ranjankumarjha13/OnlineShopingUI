@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8e1;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #b45309;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between; /* space between title and button */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0 auto; /* center the title */
+    font-size: 20px;
+    text-align: center;
+}
+
+header button {
+    background: #f59e0b;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+        margin-right: 64px;
+}
+
+header button:hover {
+    background: #fbbf24;
+}
+
+// header h1 {
+//     margin: 0;
+//     font-size: 24px;
+// }
+
+// header button {
+//     background: #f59e0b;
+//     border: none;
+//     padding: 8px 16px;
+//     border-radius: 20px;
+//     font-weight: bold;
+//     cursor: pointer;
+// }
+
+header button:hover {
+    background: #fbbf24;
+}
+
+/* Hero Section */
+.hero {
+    background: url("https://images.unsplash.com/photo-1604908177522-0409e6cbb40f") no-repeat center/cover;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h2 {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 32px;
+}
+
+/* Products */
+main {
+    max-width: auto;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #b45309;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card-content p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-content button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #b45309;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card-content button:hover {
+    background: #d97706;
+}
+
+/* Footer */
+footer {
+    background: #b45309;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    position: fixed;   /* Fixes it */
+    bottom: 0;         /* Stick to bottom */
+    left: 0;
+    width: 100%;       /* Full width */
+    z-index: 1000; 
+}
+
+
+.cart-modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+
+    .cart-content {
+        background: white;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 12px;
+        max-height: 80%;
+        overflow-y: auto;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0;
+
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+    }
+}
+
+/* Right panel style */
+.right-panel {
+  position: fixed;
+  top: 100px; /* distance from top */
+  right: 20px; /* distance from right */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.right-panel button {
+  background: #b45309;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+.close-btn{
+    margin-left: 468px;
+}
+
+.right-panel button:hover {
+  background: #f59e0b;
+}
+
+.cart-btn {
+  margin-bottom: 5px;
+}
+
+.logout-btn {
+  background: #ef4444;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+
