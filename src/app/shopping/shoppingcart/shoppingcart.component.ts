@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/model/cart-tem';
+import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart-service.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-shoppingcart',
@@ -11,14 +13,35 @@ import { CartService } from 'src/app/service/cart-service.service';
 export class ShoppingcartComponent implements OnInit {
 
   cart: CartItem[] = [];
+  products: Product[] = [];
   loggedInuser:any;
   showCart: boolean = false;
-  constructor(private router: Router,private cartService: CartService){}
+  constructor(private router: Router,private cartService: CartService,
+    private productService:ProductService
+  ){}
   ngOnInit(): void {
+    this.fetchProducts()
     this.loggedInuser=this.cartService.getUser();
     let name = this.loggedInuser.split('@')[0];
     name = name.charAt(0).toUpperCase() + name.slice(1);
     this.loggedInuser=name;
+  }
+
+  fetchProducts() {
+    this.productService.getProducts().subscribe({
+      next: (res) => {
+        if (Array.isArray(res)) {
+          this.products = res;
+          console.log("Pridcycycy"+JSON.stringify(this.products))
+        } else {
+          // this.errorMessage = res; // In case backend returns Constants.PRODUCT_NOT_FOUND
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+        // this.errorMessage = 'Failed to load products';
+      }
+    });
   }
  
 

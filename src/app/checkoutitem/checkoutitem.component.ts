@@ -29,11 +29,11 @@ export class CheckoutitemComponent {
 
   getCurrentDateTime(): string {
     const now = new Date();
-    return now.toLocaleString(); 
+    return now.toLocaleString();
   }
   getDiscount(): number {
     const total = this.getGrandTotal();
-    return total > 3000 ? total * 0.10 : 0; 
+    return total > 3000 ? total * 0.10 : 0;
   }
 
   getTotalAfterDiscount(): number {
@@ -110,12 +110,16 @@ export class CheckoutitemComponent {
             ctx.drawImage(img, 0, 0, 40, 40);
             const imgData = canvas.toDataURL('image/png');
 
+            // Safely convert price to number
+            const priceNum = Number(item.price) || 0;
+            const totalNum = priceNum * (item.qty || 1);
+
             tableData.push([
               { content: '', styles: { cellWidth: 15, minCellHeight: 15, halign: 'center', valign: 'middle' }, image: imgData },
               item.name,
-              item.qty.toString() + ' ×',  // multiplication sign
-              '\u20B9' + item.price.toFixed(2),
-              '\u20B9' + (item.price * item.qty).toFixed(2)
+              (item.qty || 1) + ' ×',
+              '\u20B9' + priceNum.toFixed(2),
+              '\u20B9' + totalNum.toFixed(2)
             ]);
             resolve();
           };
