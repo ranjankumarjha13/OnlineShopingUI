@@ -4,6 +4,7 @@
     <header class="header">
         <h1>Mithila Spices & Pickles</h1>
         <div class="header-buttons">
+            <span style="margin-right: 80px;" *ngIf="loggedInuser">Logged-user:-{{loggedInuser}}</span>
             <button (click)="toggleCart()">🛒 Cart ({{ getTotalItems() }})</button>
             <button class="logout-btn" (click)="logout()">Logout</button>
         </div>

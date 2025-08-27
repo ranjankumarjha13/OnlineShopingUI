@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/model/cart-tem';
-import { CartServiceService } from 'src/app/service/cart-service.service';
+import { CartService } from 'src/app/service/cart-service.service';
 
 @Component({
   selector: 'app-shoppingcart',
   templateUrl: './shoppingcart.component.html',
   styleUrls: ['./shoppingcart.component.scss']
 })
-export class ShoppingcartComponent {
+export class ShoppingcartComponent implements OnInit {
 
   cart: CartItem[] = [];
+  loggedInuser:any;
   showCart: boolean = false;
-  constructor(private router: Router,private cartService: CartServiceService){}
+  constructor(private router: Router,private cartService: CartService){}
+  ngOnInit(): void {
+    this.loggedInuser=this.cartService.getUser();
+    let name = this.loggedInuser.split('@')[0];
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    this.loggedInuser=name;
+  }
+ 
 
   addToCart(name: string, price: number, img: string): void {
     const item = this.cart.find(i => i.name === name);

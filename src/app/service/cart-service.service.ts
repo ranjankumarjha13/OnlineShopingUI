@@ -4,9 +4,10 @@ import { CartItem } from '../model/cart-tem';
 @Injectable({
   providedIn: 'root'
 })
-export class CartServiceService {
-
+export class CartService
+ {
   private cart: CartItem[] = [];
+  private user:any;
 
   setCart(items: CartItem[]) {
     this.cart = items;
@@ -19,4 +20,13 @@ export class CartServiceService {
   clearCart() {
     this.cart = [];
   }
+
+  setUser(user:any) {
+    this.user = user;
+  }
+
+ getUser(): any {
+  return this.user;
+}
+
 }

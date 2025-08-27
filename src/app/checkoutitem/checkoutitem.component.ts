@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CartItem } from '../model/cart-tem';
-import { CartServiceService } from '../service/cart-service.service';
+import { CartService } from '../service/cart-service.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -15,7 +15,7 @@ export class CheckoutitemComponent {
   cashOnDelivery: boolean = false;
   expectedDeliveryDate: Date | undefined;
 
-  constructor(private cartService: CartServiceService) { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
@@ -147,7 +147,7 @@ getTotalAfterDiscount(): number {
       if (discount > 0) {
         doc.setFontSize(12);
         doc.setTextColor(255, 0, 0); // red for visibility
-        doc.text(`Discount Given (10%): ₹${discount.toFixed(2)}`, 14, finalY + 10);
+        doc.text(`Discount:(10%): ₹${discount.toFixed(2)}`, 14, finalY + 10);
       }
 
       doc.setFontSize(14);

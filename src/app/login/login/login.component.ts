@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/create-user-request.model';
 import { LoginRequest } from 'src/app/model/login-request.model';
 import { AuthguardService } from 'src/app/service/authguard.service';
+import { CartService } from 'src/app/service/cart-service.service';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +17,12 @@ export class LoginComponent {
   titile = "Please Login"
   isLogin = true;
 
+
   errorMessage: string = '';
 
-  constructor(private authService: AuthguardService, private router: Router) { }
+  constructor(private authService: AuthguardService, private router: Router,
+    private cartservice: CartService
+  ) { }
 
   onClickCreateAccount() {
     this.isLogin = false;
@@ -28,8 +32,8 @@ export class LoginComponent {
     this.titile = "Please Register to Enjoy Shopping!";
   }
   registerUser() {
-  this.createUser();
-}
+    this.createUser();
+  }
 
   validateUser() {
     // Front-end validation
@@ -46,7 +50,10 @@ export class LoginComponent {
 
     this.authService.login(loginRequest).subscribe({
       next: (res) => {
-        if (res && res.message === 'Login successful!') {
+
+        if (res && res.username === this.username) {
+           localStorage.setItem('username', JSON.stringify(res.username));
+          this.cartservice.setUser(res.username);
           this.router.navigate(['/shopping']);
         } else {
           this.errorMessage = res.message + ' Click Sign Up to Register';
@@ -74,7 +81,6 @@ export class LoginComponent {
 
     this.authService.createUser(user).subscribe({
       next: (res) => {
-        console.log("Success:", res);
         if (res.message == 'User registered successfully!') {
           this.errorMessage = "User registered successfully!";
           this.isLogin = true;
