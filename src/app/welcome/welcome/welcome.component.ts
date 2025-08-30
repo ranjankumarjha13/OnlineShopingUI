@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent {
-addToCart(arg0: string,arg1: number,arg2: string) {
-throw new Error('Method not implemented.');
-}
-  constructor(private router: Router){}
-onClickLogin() {
-this.router.navigate(['/login']);
-}
+  addToCart(arg0: string, arg1: number, arg2: string) {
+    throw new Error('Method not implemented.');
+  }
+  constructor(private router: Router) { }
+  onClickLogin() {
+    this.router.navigate(['/login']);
+  }
 
 }
