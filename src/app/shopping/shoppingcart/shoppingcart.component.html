@@ -14,7 +14,10 @@
     <!-- Products -->
     <main>
   <h2>Our Products</h2>
-  <div class="products">
+ <div style="align-items: center;" *ngIf="!products || products.length === 0">
+  No Product Found. Stay Tuned to enjoy products.
+</div>
+  <div class="products" *ngIf="products && products.length > 0">
     <div class="card" *ngFor="let product of products">
       <img [src]="product.productImage" [alt]="product.productName">
       <div class="card-content">
