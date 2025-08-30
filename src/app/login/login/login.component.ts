@@ -61,7 +61,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error("HTTP error:", err);
-        this.errorMessage = err.error?.message || 'Login failed!';
+        this.errorMessage = err.error?.message || 'Login failed! Click Signup to Register';
       }
     });
   }

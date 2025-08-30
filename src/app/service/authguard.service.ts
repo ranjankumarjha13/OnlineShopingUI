@@ -3,12 +3,13 @@ import { LoginRequest } from '../model/login-request.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/create-user-request.model';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthguardService {
-  private baseUrl = 'http://localhost:8080/api/auth';
+    private baseUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) { }
   private loggedIn = false;
