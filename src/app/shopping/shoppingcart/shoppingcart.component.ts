@@ -85,6 +85,6 @@ export class ShoppingcartComponent implements OnInit {
     this.showCart = !this.showCart;
   }
   logout() {
-this.router.navigate(['/login']); // redirect to login page
+this.router.navigate(['/welcome']); // redirect to login page
   }
 }
