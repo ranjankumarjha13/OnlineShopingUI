@@ -14,17 +14,17 @@ export class ShoppingcartComponent implements OnInit {
 
   cart: CartItem[] = [];
   products: Product[] = [];
-  loggedInuser:any;
+  loggedInuser: any;
   showCart: boolean = false;
-  constructor(private router: Router,private cartService: CartService,
-    private productService:ProductService
-  ){}
+  constructor(private router: Router, private cartService: CartService,
+    private productService: ProductService
+  ) { }
   ngOnInit(): void {
     this.fetchProducts()
-    this.loggedInuser=this.cartService.getUser();
+    this.loggedInuser = this.cartService.getUser();
     let name = this.loggedInuser.split('@')[0];
     name = name.charAt(0).toUpperCase() + name.slice(1);
-    this.loggedInuser=name;
+    this.loggedInuser = name;
   }
 
   fetchProducts() {
@@ -32,7 +32,6 @@ export class ShoppingcartComponent implements OnInit {
       next: (res) => {
         if (Array.isArray(res)) {
           this.products = res;
-          console.log("Pridcycycy"+JSON.stringify(this.products))
         } else {
           // this.errorMessage = res; // In case backend returns Constants.PRODUCT_NOT_FOUND
         }
@@ -43,7 +42,7 @@ export class ShoppingcartComponent implements OnInit {
       }
     });
   }
- 
+
 
   addToCart(name: string, price: number, img: string): void {
     const item = this.cart.find(i => i.name === name);
@@ -61,17 +60,17 @@ export class ShoppingcartComponent implements OnInit {
     }
   }
   checkoutItem() {
-  if (!this.cart || this.cart.length === 0) {
-    alert('Your cart is empty!');
-    return;
-  }
+    if (!this.cart || this.cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
 
-  // Optionally save cart to localStorage or a service to pass to checkout
-  localStorage.setItem('cart', JSON.stringify(this.cart));
-  this.cartService.setCart(this.cart); // save cart to service
-  this.router.navigate(['/checkout']);
-  console.log('Cart:', JSON.stringify(this.cart));
-}
+    // Optionally save cart to localStorage or a service to pass to checkout
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.cartService.setCart(this.cart); // save cart to service
+    this.router.navigate(['/checkout']);
+    console.log('Cart:', JSON.stringify(this.cart));
+  }
 
   getTotalItems(): number {
     return this.cart.reduce((sum, item) => sum + item.qty, 0);
@@ -85,6 +84,6 @@ export class ShoppingcartComponent implements OnInit {
     this.showCart = !this.showCart;
   }
   logout() {
-this.router.navigate(['/welcome']); // redirect to login page
+    this.router.navigate(['/welcome']); // redirect to welcome page
   }
 }
